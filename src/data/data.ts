@@ -95,10 +95,18 @@ export const LANGUAGES: Lang[] = [
 export const paymentMethods: Payment[] = [
   {
     id: 1,
-    title: "cash on delivery (COD)",
+    title: "Cash on Delivery (COD)",
     descreption:
-      "Please pay money directly to the postman, if you choose cash on delivery method (COD).",
-    image: "/images/code.png",
+      "Pay in cash directly to the courier when your order is delivered.",
+    image: "/images/cod.png",
     type: "cash_on_delivery",
+  },
+  {
+    id: 2,
+    title: "Online Payment",
+    descreption:
+      "Pay securely online using your credit or debit card before delivery.",
+    image: "/images/online-payment.png",
+    type: "online",
   },
 ];
