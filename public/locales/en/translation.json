@@ -406,5 +406,11 @@
   "terms and conditions": "Terms and conditions",
   "Production date": "Production date",
   "optional": "optional",
-  "expired date": "expired date"
+  "expired date": "expired date",
+
+  "Cash on Delivery (COD)": "Cash on Delivery (COD)",
+  "Pay in cash directly to the courier when your order is delivered.": "Pay in cash directly to the courier when your order is delivered.",
+
+  "Online Payment": "Online Payment",
+  "Pay securely online using your credit or debit card before delivery.": "Pay securely online using your credit or debit card before delivery."
 }

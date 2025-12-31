@@ -409,5 +409,11 @@
   "terms and conditions": "الشروط و الأحكام",
   "Production date": "تاريخ الإنتاج",
   "expired date": "تاريخ الإنتهاء",
-  "optional": "إختياري"
+  "optional": "إختياري",
+
+  "Cash on Delivery (COD)": "الدفع عند الاستلام",
+  "Pay in cash directly to the courier when your order is delivered.": "ادفع نقدًا مباشرةً لمندوب التوصيل عند استلام طلبك.",
+
+  "Online Payment": "الدفع الإلكتروني",
+  "Pay securely online using your credit or debit card before delivery.": "ادفع بأمان عبر الإنترنت باستخدام بطاقة الائتمان أو الخصم قبل التوصيل."
 }

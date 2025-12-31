@@ -11,6 +11,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   paymentMethods,
 }) => {
   const { t } = useTranslation();
+
   return (
     <ul role="radiogroup" aria-label={t("shipping methods")}>
       {paymentMethods.map((item) => {
