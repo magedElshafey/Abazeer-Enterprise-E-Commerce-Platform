@@ -18,6 +18,7 @@ export interface Setting {
   delivery_fee: string;
   tax_rate: string;
   whatsup2: string;
+  payment_cod: boolean
 }
 
 export interface Feature {
