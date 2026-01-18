@@ -34,11 +34,7 @@ import useGetTestimonials from "../api/testimonials/useGetTestimonials";
 import { Testimonials } from "../types/testimonials.types";
 import TestimonialsCard from "../components/testimonials/TestimonialsCard";
 import useGetAllCategories from "@/features/categories/api/useGetAllCategories";
-import {
-  IoChevronBack,
-  IoChevronForward,
-  IoClose,
-} from "react-icons/io5";
+import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -97,7 +93,7 @@ const Home = () => {
         return (prev + 1) % galleryItems.length;
       });
     },
-    [galleryItems.length]
+    [galleryItems.length],
   );
 
   const handlePrevGalleryImage = useCallback(
@@ -110,12 +106,17 @@ const Home = () => {
         return (prev - 1 + galleryItems.length) % galleryItems.length;
       });
     },
-    [galleryItems.length]
+    [galleryItems.length],
   );
 
   const handleNavigate = useCallback(() => {
     navigate("/blogs");
   }, [navigate]);
+  const defaultBreakPoints = {
+    "(max-width: 1024px)": { slides: { perView: 3, spacing: 16 } },
+    "(max-width: 768px)": { slides: { perView: 2, spacing: 16 } },
+    "(max-width: 580px)": { slides: { perView: 1, spacing: 12 } },
+  };
   return (
     <>
       <SEO title={t("home")} />
@@ -182,9 +183,14 @@ const Home = () => {
           <FetchHandler queryResult={adsQueryResult} skeletonType="image">
             {adsQueryResult?.data && adsQueryResult?.data?.length > 0 && (
               <div className="containerr">
-                <SectionTitle title="featured" />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {adsQueryResult?.data?.slice(0, 3)?.map((ad) => (
+                <Slider
+                  key={adsQueryResult?.data?.length}
+                  title={"featured"}
+                  loop
+                  spacing={10}
+                  breakPoints={defaultBreakPoints}
+                >
+                  {adsQueryResult?.data.map((ad) => (
                     <Link
                       key={ad?.id}
                       to={`/products?filter-category=${ad?.category_id}`}
@@ -201,7 +207,12 @@ const Home = () => {
                       </div>
                     </Link>
                   ))}
-                </div>
+                </Slider>
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {adsQueryResult?.data?.slice(0, 3)?.map((ad) => (
+                   
+                  ))}
+                </div> */}
               </div>
             )}
           </FetchHandler>
