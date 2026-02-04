@@ -12,7 +12,7 @@ import EmptyStateCard from "@/features/user/components/common/EmptyStateCard";
 import AddressCard from "@/features/user/components/addresses/AddressCard";
 import OrderDetails from "../components/order-details/OrderDetails";
 import PriceDetails from "../components/order-details/PriceDetails";
-import ShippingMethods from "../components/shipping-methods/ShippingMethods";
+// import ShippingMethods from "../components/shipping-methods/ShippingMethods";
 import PaymentMethods from "../components/payment-methods/PaymentMethods";
 import CouponInput from "../components/copoun/CouponInput";
 
@@ -34,7 +34,7 @@ const Checkout = () => {
     isPending,
   } = useCheckoutLogic();
 
-  const { addressQuery, settingsQuery } = queries;
+  const { addressQuery } = queries;
 
   const { cartQuery } = useCart();
 
@@ -47,7 +47,7 @@ const Checkout = () => {
     <>
       <SEO title={t("checkout")} />
       <main
-        className="containerr p-4 grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 gap-6 p-4 containerr md:grid-cols-2"
         aria-labelledby="checkout-heading"
       >
         <h1 id="checkout-heading" className="sr-only">
@@ -56,13 +56,13 @@ const Checkout = () => {
 
         {/* ✅ LEFT SIDE - Order Summary */}
         <section aria-label={t("order details")}>
-          <div className="bg-slate-100 p-5 rounded-xl shadow-sm">
+          <div className="p-5 shadow-sm bg-slate-100 rounded-xl">
             {(cartQuery?.data as CartResponse)?.items?.length ? (
               <>
                 <OrderDetails />
 
-                <div className="py-4 border-t border-b mt-4">
-                  <h2 className="font-semibold mb-3">
+                {/* <div className="py-4 mt-4 border-t border-b">
+                  <h2 className="mb-3 font-semibold">
                     {t("shipping methods")}
                   </h2>
                   <FetchHandler queryResult={settingsQuery} skeletonType="list">
@@ -74,7 +74,7 @@ const Checkout = () => {
                       />
                     )}
                   </FetchHandler>
-                </div>
+                </div> */}
 
                 <footer className="pt-4">
                   <PriceDetails />
@@ -99,11 +99,11 @@ const Checkout = () => {
 
           {/* ✅ Coupon Section */}
           <section
-            className="rounded-lg p-4 border border-dashed border-orangeColor bg-white shadow-sm mt-6"
+            className="p-4 mt-6 bg-white border border-dashed rounded-lg shadow-sm border-orangeColor"
             aria-label={t("available coupons")}
           >
             <div className="flex-between">
-              <p className="mt-4 focus:outline-none focus:ring-2 text-orangeColor font-bold rounded">
+              <p className="mt-4 font-bold rounded focus:outline-none focus:ring-2 text-orangeColor">
                 {t("You have a coupon code?")}
               </p>
               <img
@@ -168,7 +168,7 @@ const Checkout = () => {
                     </div>
                   }
                 >
-                  <button className="text-slate-800 underline my-4 font-medium">
+                  <button className="my-4 font-medium underline text-slate-800">
                     {t("change address")}
                   </button>
                 </DialogComponent>
@@ -201,7 +201,7 @@ const Checkout = () => {
             />
           </div>
 
-          <div className="flex-center mt-4">
+          <div className="mt-4 flex-center">
             <MainBtn
               text={t("checkout")}
               theme="secondary"
