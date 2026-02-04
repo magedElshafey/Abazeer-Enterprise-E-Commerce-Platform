@@ -20,7 +20,8 @@ const ProductDetails: FC = () => {
         <FetchHandler queryResult={queryResult} skeletonType="productDetails">
           <div className="bg-white p-6 lg:p-10 flex flex-col lg:flex-row gap-2 rounded-lg">
             <div className="flex-1">
-              <ProductPhotos media={product?.images || []} />
+              <ProductPhotos media={product?.images || []} 
+              >
             </div>
 
             <div className="w-full lg:w-1/3">
