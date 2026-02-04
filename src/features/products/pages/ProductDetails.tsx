@@ -15,13 +15,12 @@ const ProductDetails: FC = () => {
   });
   const { data: product } = queryResult;
   return (
-    <div className="bg-background-gray min-h-screen pb-10">
-      <div className="containerr pt-10">
+    <div className="min-h-screen pb-10 bg-background-gray">
+      <div className="pt-10 containerr">
         <FetchHandler queryResult={queryResult} skeletonType="productDetails">
-          <div className="bg-white p-6 lg:p-10 flex flex-col lg:flex-row gap-2 rounded-lg">
+          <div className="flex flex-col gap-2 p-6 bg-white rounded-lg lg:p-10 lg:flex-row">
             <div className="flex-1">
-              <ProductPhotos media={product?.images || []} 
-              >
+              <ProductPhotos media={product?.images || []} />
             </div>
 
             <div className="w-full lg:w-1/3">
@@ -32,11 +31,11 @@ const ProductDetails: FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 bg-white p-2 rounded-lg">
+          <div className="p-2 mt-8 bg-white rounded-lg">
             <ProductFooter product={product!} />
           </div>
           {product && product?.related_products_data?.length > 0 && (
-            <div className="mt-8 bg-white p-6 rounded-lg">
+            <div className="p-6 mt-8 bg-white rounded-lg">
               <RelatedProducts
                 products={product?.related_products_data || []}
               />
