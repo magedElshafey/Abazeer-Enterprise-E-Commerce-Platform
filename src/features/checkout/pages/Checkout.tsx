@@ -49,7 +49,8 @@ const Checkout = () => {
     //invalidate query to check for missing items;
     queryClient.invalidateQueries({ queryKey: [apiRoutes.cart] });
   }, []);
-
+  const deriviedCoast =
+    addressQuery?.isSuccess && addressQuery?.data?.length > 0 ? coast : 0;
   return (
     <>
       <SEO title={t("checkout")} />
@@ -84,7 +85,7 @@ const Checkout = () => {
                 </div> */}
 
                 <footer className="pt-4">
-                  <PriceDetails coast={coast} />
+                  <PriceDetails coast={deriviedCoast} />
                 </footer>
               </>
             ) : cartQuery?.status === "pending" ? (
@@ -144,7 +145,11 @@ const Checkout = () => {
             addressQuery.data?.length > 0 &&
             localAddress ? (
               <>
-                <AddressCard address={localAddress} />
+                <AddressCard
+                  hasDelete={false}
+                  hasEdit={false}
+                  address={localAddress}
+                />
 
                 <DialogComponent
                   ref={refs.dialogRef}

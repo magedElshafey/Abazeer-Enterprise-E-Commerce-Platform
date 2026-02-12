@@ -12,7 +12,7 @@ const useMakeDefaultAddress = () => {
     mutationKey: ["makeDefaultAddress"],
     mutationFn: async (addressId: number) => {
       const { data } = await Axios.patch<Response>(
-        `${apiRoutes.addresses}/${addressId}/set-default`
+        `${apiRoutes.addresses}/${addressId}/set-default`,
       );
       return data;
     },
@@ -21,6 +21,9 @@ const useMakeDefaultAddress = () => {
       if (data?.message) toast.success(data.message);
       // refresh addresses list
       await queryClient.invalidateQueries({ queryKey: [apiRoutes.addresses] });
+      await queryClient.invalidateQueries({
+        queryKey: [apiRoutes.getDeliveryFees, (data?.data as { id?: number })?.id],
+      });
     },
     onError: (error: Error) => {
       toastErrorMessage(error);

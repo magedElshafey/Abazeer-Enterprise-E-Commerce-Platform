@@ -1,24 +1,21 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  type AddressSchemaType,
-  addressSchema,
-} from "../schemas/addresses";
+import { type AddressSchemaType, addressSchema } from "../schemas/addresses";
 import useCreateUpdateAddress from "../api/addresses/useCreateUpdateAddress";
 import useGetAddress from "../api/addresses/useGetAddress";
 import { toast } from "sonner";
 import toastErrorMessage from "@/utils/toastApiError";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-
 const useCreateAddressLogic = () => {
   const { id } = useParams();
 
   const { isPending, mutateAsync } = useCreateUpdateAddress({ id });
-  const { data: addressData, isLoading: isLoadingAddress } = useGetAddress({ id });
-  const [ searchParams ] = useSearchParams();
+  const { data: addressData, isLoading: isLoadingAddress } = useGetAddress({
+    id,
+  });
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -56,6 +53,7 @@ const useCreateAddressLogic = () => {
     try {
       const response = await mutateAsync(data);
       if (response?.status) {
+        console.log("response from create addreses", response);
         toast.success(response?.message);
         reset();
         navigate(searchParams.get("to") || "..");

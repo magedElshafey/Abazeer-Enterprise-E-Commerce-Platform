@@ -4,7 +4,6 @@ import DialogComponent from "@/common/components/dialog/dialog";
 import { Axios } from "@/lib/axios/Axios";
 import { apiRoutes } from "@/services/api-routes/apiRoutes";
 import { MdDelete } from "react-icons/md";
-
 interface DeleteAddressButtonProps {
   addressId: number;
   addressName?: string;
@@ -17,9 +16,9 @@ const DeleteAddressButton: FC<DeleteAddressButtonProps> = ({
   onSuccess,
 }) => {
   const { t } = useTranslation();
-
   const handleDelete = async () => {
     const response = await Axios.delete(`${apiRoutes.addresses}/${addressId}`);
+
     return response;
   };
 
@@ -52,7 +51,7 @@ const DeleteAddressButton: FC<DeleteAddressButtonProps> = ({
       onSuccess={onSuccess}
     >
       <button
-        className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
+        className="flex items-center gap-2 px-3 py-2 text-red-600 transition-colors duration-200 rounded-lg hover:text-red-700 hover:bg-red-50"
         aria-label={t("remove")}
       >
         <MdDelete size={20} />
@@ -63,4 +62,3 @@ const DeleteAddressButton: FC<DeleteAddressButtonProps> = ({
 };
 
 export default DeleteAddressButton;
-
