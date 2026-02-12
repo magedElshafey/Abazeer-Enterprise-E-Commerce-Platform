@@ -3,7 +3,7 @@ import { useCart } from "@/store/CartProvider";
 import useGetWebsiteSettings from "@/features/settings/api/useGetWebsiteSettings";
 import SaudiCurrency from "@/common/components/currency/SaudiCurrency";
 
-const PriceDetails = ({ coast }: { coast: string }) => {
+const PriceDetails = ({ coast = "0" }: { coast: string }) => {
   const { t } = useTranslation();
   const {
     total,
