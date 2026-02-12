@@ -3,7 +3,7 @@ import { z } from "zod";
 // ✅ يستخدم في login فقط
 export const singlePasswordSchema = z
   .string()
-  .min(8, "Password must be at least 8 characters long");
+  .min(6, "Password must be at least 8 characters long");
 /**
  *  .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
   .regex(/[a-z]/, "Password must contain at least one lowercase letter")

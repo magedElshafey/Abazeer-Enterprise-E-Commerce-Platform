@@ -45,5 +45,6 @@ export const apiRoutes = {
   notifications: "/notifications",
   contactStore: "contact-us/store",
   contactSettings: "settings/contact",
-  onlinePayment: "payment/initiate"
+  onlinePayment: "payment/initiate",
+  getDeliveryFees: "get-delivery-fee",
 };

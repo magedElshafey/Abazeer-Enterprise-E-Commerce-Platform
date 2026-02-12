@@ -40,9 +40,9 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
       });
     }, [product?.average_rate]);
 
-    const progressPercent = product.stock_quantity
-      ? ((product?.sold_quantity || 0) / product.stock_quantity) * 100
-      : 0;
+    // const progressPercent = product.stock_quantity
+    //   ? ((product?.sold_quantity || 0) / product.stock_quantity) * 100
+    //   : 0;
     const handleCategoryNavigate = useCallback(() => {
       navigate(`/products?filter-category=${product.category_id}`);
     }, [navigate, product.category_id]);
@@ -50,7 +50,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
       <div
         className={twMerge(
           "border relative group shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden w-full bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orangeColor rounded-lg flex gap-4 p-4",
-          className
+          className,
         )}
         aria-label={`${product.name} - ${product.category}`}
       >
@@ -71,7 +71,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
         {/* ✅ Discount badge */}
         {product?.has_discount && product.discount_percentage > 0 && (
           <div
-            className="w-16 absolute top-0 left-0 p-1 flex-center bg-orangeColor text-white font-bold z-40 rounded-br-lg"
+            className="absolute top-0 left-0 z-40 w-16 p-1 font-bold text-white rounded-br-lg flex-center bg-orangeColor"
             aria-label={`${product.discount_percentage}% ${t("discount")}`}
           >
             <p>{Math.ceil(product.discount_percentage)}%</p>
@@ -79,38 +79,38 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
         )}
 
         {/* ✅ Product image */}
-        <div className="w-32 h-32 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+        <div className="flex items-center justify-center flex-shrink-0 w-32 h-32 overflow-hidden bg-gray-100 rounded-lg">
           {product.image ? (
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-300 cursor-pointer group-hover:scale-105"
               onClick={handleNavigate}
             />
           ) : (
             <img
               src="/images/600x600.jpg"
               alt={product.name}
-              className="w-full h-full object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-300 cursor-pointer group-hover:scale-105"
               onClick={handleNavigate}
             />
           )}
         </div>
 
         {/* ✅ Right side: Content and Button in column */}
-        <div className="flex-1 flex flex-col justify-between gap-3">
+        <div className="flex flex-col justify-between flex-1 gap-3">
           {/* ✅ Product Info */}
           <div>
             <p
               onClick={handleCategoryNavigate}
-              className="mb-1 transition-colors duration-200 group-hover:text-orangeColor hover:underline w-fit cursor-pointer font-medium text-xs text-gray-600"
+              className="mb-1 text-xs font-medium text-gray-600 transition-colors duration-200 cursor-pointer group-hover:text-orangeColor hover:underline w-fit"
             >
               {product.category}
             </p>
 
             <button
               onClick={handleNavigate}
-              className="mb-2 font-medium text-blue-400 text-base line-clamp-2 cursor-pointer duration-200 hover:underline text-start"
+              className="mb-2 text-base font-medium text-blue-400 duration-200 cursor-pointer line-clamp-2 hover:underline text-start"
             >
               {product.name}
             </button>
@@ -121,7 +121,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
               aria-label={`${product.average_rate} out of 5 stars`}
             >
               <div className="flex gap-0.5">{reviewStars}</div>
-              <span className="text-sm text-gray-500 ml-1">
+              <span className="ml-1 text-sm text-gray-500">
                 ({product.ratings_count || 0})
               </span>
             </div>
@@ -130,35 +130,35 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
             <div className="flex items-center gap-3 mb-2">
               <div
                 aria-label={`${product.sale_price || product?.price} ${t(
-                  "Saudi Riyal"
+                  "Saudi Riyal",
                 )}`}
-                className="text-orangeColor text-xl font-bold flex justify-center items-center  gap-1"
+                className="flex items-center justify-center gap-1 text-xl font-bold text-orangeColor"
               >
                 <p> {product.sale_price || +product?.price}</p>
                 <SaudiCurrency />
               </div>
 
               {product?.has_discount && product?.sale_price && (
-                <p className="text-gray-500 line-through text-sm flex items-center gap-1">
+                <p className="flex items-center gap-1 text-sm text-gray-500 line-through">
                   <p>{product.price}</p> <SaudiCurrency />
                 </p>
               )}
             </div>
 
             {/* ✅ Progress bar */}
-            <div
+            {/* <div
               className={`w-full h-2 bg-gray-200 rounded-full overflow-hidden mb-1 ${
                 product.stock_quantity == 0 ? "invisible" : ""
               }`}
               aria-label={`Stock remaining: ${product.sold_quantity} of ${product.stock_quantity}`}
             >
               <div
-                className="h-full bg-orangeColor transition-all duration-500"
+                className="h-full transition-all duration-500 bg-orangeColor"
                 style={{ width: `${progressPercent}%` }}
               />
-            </div>
+            </div> */}
             {product?.stock_quantity > 0 && (
-              <div className="flex-between my-3 text-xs">
+              <div className="my-3 text-xs flex-between">
                 <div>
                   <p className=" text-slate-500">{t("Production date")}</p>
                   <p>{formatDate(product?.product_at)}</p>
@@ -172,14 +172,14 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
 
             {product.stock_quantity > 0 ? (
               <p
-                className="font-medium text-sm mb-2 text-end"
+                className="mb-2 text-sm font-medium text-end"
                 aria-live="polite"
               >
                 {t("sold")} : {product.sold_quantity || 0} /{" "}
                 {product.stock_quantity + (product?.sold_quantity || 0)}
               </p>
             ) : (
-              <p className="font-medium text-sm mb-2 text-end">
+              <p className="mb-2 text-sm font-medium text-end">
                 {t("not-available")}
               </p>
             )}
@@ -207,7 +207,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default ProductListCard;

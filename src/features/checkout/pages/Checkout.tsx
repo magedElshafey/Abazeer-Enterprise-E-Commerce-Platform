@@ -26,7 +26,14 @@ const Checkout = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const {
-    states: { coupon, localAddress, paymentMethod, notes, shiipingMethod },
+    states: {
+      coupon,
+      localAddress,
+      paymentMethod,
+      notes,
+      shiipingMethod,
+      coast,
+    },
     handlers,
     data,
     queries,
@@ -77,7 +84,7 @@ const Checkout = () => {
                 </div> */}
 
                 <footer className="pt-4">
-                  <PriceDetails />
+                  <PriceDetails coast={coast} />
                 </footer>
               </>
             ) : cartQuery?.status === "pending" ? (

@@ -26,7 +26,7 @@
   "user name is required": "user name is required",
   "password is required": "password is required",
   "password must be at least 6 characters": "password must be at least 6 characters",
-  "Password must be at least 8 characters long": "password must be at least 8 characters long",
+  "Password must be at least 8 characters long": "password must be at least 6 characters long",
   "Password must contain at least one number": "password must contain at least one number",
   "Password must contain at least one uppercase letter": "password must contain at least one uppercase letter",
   "Password must contain at least one lowercase letter": "password must contain at least one lowercase letter",

@@ -15,7 +15,7 @@ import useGetWebsiteSettings from "@/features/settings/api/useGetWebsiteSettings
 import { useQueryClient } from "@tanstack/react-query";
 import { apiRoutes } from "@/services/api-routes/apiRoutes";
 import { useNavigate } from "react-router-dom";
-
+import useGetShippingMethod from "@/features/checkout/api/useGetShippingMethod";
 function extractOrderId(res: CheckoutResponse): number | null {
   const id = res?.id ?? res?.data?.id;
   return typeof id === "number" && id > 0 ? id : null;
@@ -59,7 +59,9 @@ const useCheckoutLogic = () => {
   const [notes, setNotes] = useState("");
 
   const addressQuery = useGetUserAddresses();
-
+  const shippingfess = useGetShippingMethod(localAddress?.id ?? 0);
+  const coast = shippingfess?.data;
+  console.log("shippingfess", shippingfess?.data);
   useEffect(() => {
     if (
       addressQuery.isFetching ||
@@ -210,6 +212,7 @@ const useCheckoutLogic = () => {
         localAddress,
         notes,
         shiipingMethod,
+        coast,
       },
       handlers: {
         handleCodeChange,
@@ -239,6 +242,7 @@ const useCheckoutLogic = () => {
       settingsQuery,
       isPending,
       shippingMethods,
+      coast,
     ],
   );
 };

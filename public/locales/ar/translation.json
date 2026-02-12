@@ -26,7 +26,7 @@
   "user name is required": "إسم المستخدم مطلوب",
   "password is required": "كلمة المرور مطلوبة",
   "password must be at least 6 characters": "كلمة المرور يجب ان تتكون من 6 ارقام علي الأقل",
-  "Password must be at least 8 characters long": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+  "Password must be at least 8 characters long": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
   "Password must contain at least one number": "كلمة المرور يجب أن تحتوي على رقم واحد على الأقل",
   "Password must contain at least one uppercase letter": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل",
   "Password must contain at least one lowercase letter": "كلمة المرور يجب أن تحتوي على حرف صغير واحد على الأقل",

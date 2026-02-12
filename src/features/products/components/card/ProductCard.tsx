@@ -41,11 +41,11 @@ const ProductCard: React.FC<ProductCardProps> = memo(
       });
     }, [product?.average_rate]);
 
-    const progressPercent = product.stock_quantity
-      ? ((product?.sold_quantity || 0) /
-          (product.stock_quantity + (product.sold_quantity || 0))) *
-        100
-      : 0;
+    // const progressPercent = product.stock_quantity
+    //   ? ((product?.sold_quantity || 0) /
+    //       (product.stock_quantity + (product.sold_quantity || 0))) *
+    //     100
+    //   : 0;
     const handleCategoryNavigate = useCallback(() => {
       navigate(`/products?filter-category=${product.category_id}`);
     }, [navigate, product.category_id]);
@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
       <div
         className={twMerge(
           "border relative px-6 pt-6 pb-3 group shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden w-full bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orangeColor text-start flex flex-col justify-between h-full min-h-[400px] group",
-          className
+          className,
         )}
         aria-label={`${product.name} - ${product.category}`}
       >
@@ -74,7 +74,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
         {/* ✅ Discount badge */}
         {product?.has_discount && product.discount_percentage > 0 && (
           <div
-            className="w-16 absolute top-0 left-0 p-1 flex-center bg-orangeColor text-white font-bold z-20 rounded-br-lg"
+            className="absolute top-0 left-0 z-20 w-16 p-1 font-bold text-white rounded-br-lg flex-center bg-orangeColor"
             aria-label={`${product.discount_percentage}% ${t("discount")}`}
           >
             <p>{Math.ceil(product.discount_percentage)}%</p>
@@ -88,17 +88,17 @@ const ProductCard: React.FC<ProductCardProps> = memo(
         />
 
         {/* ✅ Content */}
-        <div className="mt-3 relative">
+        <div className="relative mt-3">
           <p
             onClick={handleCategoryNavigate}
-            className="mb-1 duration-300 cursor-pointer w-fit hover:underline  transition-colors group-hover:text-orangeColor font-medium text-sm text-gray-600"
+            className="mb-1 text-sm font-medium text-gray-600 transition-colors duration-300 cursor-pointer w-fit hover:underline group-hover:text-orangeColor"
           >
             {product.category}
           </p>
 
           <button
             onClick={handleNavigate}
-            className="mb-1 font-medium text-blue-400 text-base  line-clamp-1 cursor-pointer duration-200 hover:underline text-start"
+            className="mb-1 text-base font-medium text-blue-400 duration-200 cursor-pointer line-clamp-1 hover:underline text-start"
           >
             {product.name}
           </button>
@@ -109,7 +109,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
             aria-label={`${product.average_rate} out of 5 stars`}
           >
             {reviewStars}
-            <span className="text-sm text-gray-500 ml-1">
+            <span className="ml-1 text-sm text-gray-500">
               ({product.ratings_count || 0})
             </span>
           </div>
@@ -118,44 +118,44 @@ const ProductCard: React.FC<ProductCardProps> = memo(
           <div className="flex items-center gap-3 mb-2">
             <div
               aria-label={`${product.sale_price || product?.price} ${t(
-                "Saudi Riyal"
+                "Saudi Riyal",
               )}`}
-              className="text-orangeColor text-lg font-bold flex items-center gap-1"
+              className="flex items-center gap-1 text-lg font-bold text-orangeColor"
             >
               <p> {product.sale_price || +product?.price}</p> <SaudiCurrency />
             </div>
 
             {product?.has_discount && product?.sale_price && (
-              <p className="text-gray-500 line-through text-sm flex items-center gap-1">
+              <p className="flex items-center gap-1 text-sm text-gray-500 line-through">
                 {product.price} <SaudiCurrency />
               </p>
             )}
           </div>
 
           {/* ✅ Progress bar */}
-          <div
+          {/* <div
             className={`w-full h-3 bg-gray-200 overflow-hidden mb-1 ${
               product.stock_quantity == 0 ? "invisible" : ""
             }`}
             aria-label={`Stock remaining: ${product.sold_quantity} of ${product.stock_quantity}`}
           >
             <div
-              className="h-full bg-orangeColor transition-all duration-500"
+              className="h-full transition-all duration-500 bg-orangeColor"
               style={{ width: `${progressPercent}%` }}
             />
-          </div>
-          {product.stock_quantity > 0 ? (
-            <p className="font-medium text-sm mb-2 text-end" aria-live="polite">
+          </div> */}
+          {/* {product.stock_quantity > 0 ? (
+            <p className="mb-2 text-sm font-medium text-end" aria-live="polite">
               {t("sold")} : {product.sold_quantity || 0} /{" "}
               {product.stock_quantity + (product?.sold_quantity || 0)}
             </p>
           ) : (
-            <p className="font-medium text-sm mb-2 text-end">
+            <p className="mb-2 text-sm font-medium text-end">
               {t("not-available")}
             </p>
-          )}
+          )} */}
           {product?.stock_quantity > 0 && (
-            <div className="flex-between text-xs">
+            <div className="text-xs flex-between">
               <div>
                 <p className=" text-slate-500">{t("Production date")}</p>
                 <p>{formatDate(product?.product_at)}</p>
@@ -168,17 +168,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
           )}
 
           {product?.stock_quantity > 0 ? (
-            <div
-              className="
-            lg:translate-y-full 
-            lg:opacity-0
-            lg:group-hover:translate-y-0 
-            lg:group-hover:opacity-100
-            lg:transition-all lg:duration-500 
-            lg:ease-in-out
-            will-change-transform will-change-opacity
-          "
-            >
+            <div className=" lg:translate-y-full lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-500 lg:ease-in-out will-change-transform will-change-opacity">
               <AddToCartButton product={product} tabIndex={0} />
             </div>
           ) : (
@@ -204,7 +194,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default ProductCard;
