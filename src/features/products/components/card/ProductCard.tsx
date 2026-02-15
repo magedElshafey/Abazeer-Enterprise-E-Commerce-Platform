@@ -10,7 +10,7 @@ import FavoriteButton from "../product-details/FavoriteButton";
 import ProductAlertButton from "../product-alert/ProductAlertButton";
 import MainBtn from "@/common/components/buttons/MainBtn";
 import SaudiCurrency from "@/common/components/currency/SaudiCurrency";
-import { formatDate } from "@/utils/formatDate";
+// import { formatDate } from "@/utils/formatDate";
 
 interface ProductCardProps {
   product: Product;
@@ -154,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
               {t("not-available")}
             </p>
           )} */}
-          {product?.stock_quantity > 0 && (
+          {/* {product?.stock_quantity > 0 && (
             <div className="text-xs flex-between">
               <div>
                 <p className=" text-slate-500">{t("Production date")}</p>
@@ -165,7 +165,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
                 <p>{formatDate(product?.expired_at)}</p>
               </div>
             </div>
-          )}
+          )} */}
 
           {product?.stock_quantity > 0 ? (
             <div className=" lg:translate-y-full lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-500 lg:ease-in-out will-change-transform will-change-opacity">

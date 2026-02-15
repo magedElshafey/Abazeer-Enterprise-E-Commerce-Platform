@@ -9,7 +9,7 @@ import ProductAlertButton from "../product-alert/ProductAlertButton";
 import MainBtn from "@/common/components/buttons/MainBtn";
 import SaudiCurrency from "@/common/components/currency/SaudiCurrency";
 import FavoriteButton from "../product-details/FavoriteButton";
-import { formatDate } from "@/utils/formatDate";
+// import { formatDate } from "@/utils/formatDate";
 
 interface ProductListCardProps {
   product: Product;
@@ -157,7 +157,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
                 style={{ width: `${progressPercent}%` }}
               />
             </div> */}
-            {product?.stock_quantity > 0 && (
+            {/* {product?.stock_quantity > 0 && (
               <div className="my-3 text-xs flex-between">
                 <div>
                   <p className=" text-slate-500">{t("Production date")}</p>
@@ -168,9 +168,9 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
                   <p>{formatDate(product?.expired_at)}</p>
                 </div>
               </div>
-            )}
+            )} */}
 
-            {product.stock_quantity > 0 ? (
+            {/* {product.stock_quantity > 0 ? (
               <p
                 className="mb-2 text-sm font-medium text-end"
                 aria-live="polite"
@@ -182,7 +182,7 @@ const ProductListCard: React.FC<ProductListCardProps> = memo(
               <p className="mb-2 text-sm font-medium text-end">
                 {t("not-available")}
               </p>
-            )}
+            )} */}
           </div>
 
           {/* ✅ Add to cart button - full width on mobile, fixed width on desktop */}

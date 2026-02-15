@@ -14,7 +14,6 @@ import { useState } from "react";
 import { useCart } from "@/store/CartProvider";
 import ProductAlertButton from "../product-alert/ProductAlertButton";
 import SaudiCurrency from "@/common/components/currency/SaudiCurrency";
-import { formatDate } from "@/utils/formatDate";
 type Props = {
   product: ProductDetails;
 };
@@ -27,17 +26,17 @@ const ProductInfo: FC<Props> = ({ product }) => {
   const inCart = isInCart(product.id);
 
   return (
-    <div className="px-2 flex flex-col gap-4">
-      <div className="border-b pb-4 ">
+    <div className="flex flex-col gap-4 px-2">
+      <div className="pb-4 border-b ">
         <div className="mb-3">
-          <p className="text-inherit text-xl mb-2 text-wrap">{product?.name}</p>
+          <p className="mb-2 text-xl text-inherit text-wrap">{product?.name}</p>
           <ProductRate
             rating={product?.average_rate}
             reviewCount={product?.reviews.length}
           />
         </div>
-        {product?.stock_quantity > 0 && (
-          <div className="flex-between text-xs">
+        {/* {product?.stock_quantity > 0 && (
+          <div className="text-xs flex-between">
             <div>
               <p className=" text-slate-500">{t("Production date")}</p>
               <p>{formatDate(product?.product_at)}</p>
@@ -47,16 +46,16 @@ const ProductInfo: FC<Props> = ({ product }) => {
               <p>{formatDate(product?.expired_at)}</p>
             </div>
           </div>
-        )}
+        )} */}
       </div>
       <div>
-        <div className="flex gap-1 text-2xl font-bold text-text-darkRed items-center">
+        <div className="flex items-center gap-1 text-2xl font-bold text-text-darkRed">
           <p>{product.has_discount ? product.sale_price : product.price}</p>
           <SaudiCurrency />
         </div>
         <span className="invisible">place</span>
         {product?.has_discount && (
-          <div className="flex gap-1 items-center text-lg font-bold text-text-gray opacity-60 line-through">
+          <div className="flex items-center gap-1 text-lg font-bold line-through text-text-gray opacity-60">
             <p>{product?.price}</p> <SaudiCurrency />
           </div>
         )}
@@ -85,7 +84,7 @@ const ProductInfo: FC<Props> = ({ product }) => {
       {product?.stock_quantity > 0 ? (
         <div>
           {!inCart && <p>{t("quantity")}</p>}
-          <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-2 mt-1">
+          <div className="flex flex-col gap-2 mt-1 sm:flex-row lg:flex-col xl:flex-row">
             {!inCart && (
               <ProductQuantity
                 className="w-full"
@@ -138,7 +137,7 @@ const ProductInfo: FC<Props> = ({ product }) => {
             </span>
             <Link
               to={`/products?filter-brand=${product?.brand.id}`}
-              className="text-gray-600 hover:text-orangeColor hover:underline transition-colors duration-200"
+              className="text-gray-600 transition-colors duration-200 hover:text-orangeColor hover:underline"
             >
               {product?.brand.name}
             </Link>
@@ -153,7 +152,7 @@ const ProductInfo: FC<Props> = ({ product }) => {
             </span>
             <Link
               to={`/products?filter-category=${product?.category.id}`}
-              className="text-gray-600 hover:text-orangeColor hover:underline transition-colors duration-200"
+              className="text-gray-600 transition-colors duration-200 hover:text-orangeColor hover:underline"
             >
               {product?.category.name}
             </Link>
